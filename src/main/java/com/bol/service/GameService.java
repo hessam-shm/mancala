@@ -27,18 +27,18 @@ public class GameService {
         return state;
     }
 
-    public GameState move(int pitIndex, Player player){
+    public GameState move(int pitIndex){
         if(state.getWinner() != null || !moveService.isLegalMove(pitIndex,state)){
             return state;
         }
 
-        SeedHolder landingPit = boardService.updateBoard(pitIndex,player);
+        SeedHolder landingPit = boardService.updateBoard(pitIndex,state.getTurn());
         state.setBoard(boardService.getBoard());
-        state.setTurn(takeTurn(player));
+        state.setTurn(takeTurn(state.getTurn()));
 
         if(moveService.isEligibleToFreeTurn(landingPit.getIndex(), state)){
-            state.setTurn(player);
-            state.setMessage(player + " can move again");
+            state.setTurn(state.getTurn());
+            state.setMessage(state.getTurn() + " can move again");
             return state;
         }
 
@@ -48,7 +48,7 @@ public class GameService {
         }
 
         if(moveService.isEligibleToCapture(landingPit.getIndex(),state)){
-            capture(pitIndex,player);
+            capture(pitIndex,state.getTurn());
             state.setBoard(boardService.getBoard());
         }
 
