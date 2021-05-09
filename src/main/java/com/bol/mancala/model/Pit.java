@@ -1,4 +1,4 @@
-package com.bol.model;
+package com.bol.mancala.model;
 
 import org.springframework.stereotype.Component;
 
@@ -8,6 +8,7 @@ public class Pit extends SeedHolder{
     public Pit(int index, int seeds, Player player) {
         super(index, seeds, player);
     }
+    public Pit(){}
 
     public void takeSeed(){
         this.setSeeds(this.getSeeds()-1);

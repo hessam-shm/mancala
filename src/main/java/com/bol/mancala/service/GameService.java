@@ -1,10 +1,9 @@
-package com.bol.service;
+package com.bol.mancala.service;
 
-import com.bol.model.*;
+import com.bol.mancala.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 

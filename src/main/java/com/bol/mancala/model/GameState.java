@@ -1,4 +1,4 @@
-package com.bol.model;
+package com.bol.mancala.model;
 
 import org.springframework.stereotype.Component;
 
@@ -16,6 +16,8 @@ public class GameState {
         this.winner = winner;
         this.message = message;
     }
+
+    public GameState(){}
 
     public Board getBoard() {
         return board;

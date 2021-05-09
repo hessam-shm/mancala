@@ -1,4 +1,4 @@
-package com.bol.model;
+package com.bol.mancala.model;
 
 import org.springframework.stereotype.Component;
 
@@ -11,6 +11,7 @@ public class Player {
     public Player(String name) {
         this.name = name;
     }
+    public Player(){}
 
     public String getName() {
         return name;

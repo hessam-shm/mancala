@@ -1,4 +1,4 @@
-package com.bol.model;
+package com.bol.mancala.model;
 
 import org.springframework.stereotype.Component;
 

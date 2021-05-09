@@ -1,7 +1,7 @@
-package com.bol.service;
+package com.bol.mancala.service;
 
-import com.bol.model.Bank;
-import com.bol.model.GameState;
+import com.bol.mancala.model.Bank;
+import com.bol.mancala.model.GameState;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,6 +1,6 @@
-package com.bol.service;
+package com.bol.mancala.service;
 
-import com.bol.model.*;
+import com.bol.mancala.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -47,6 +47,7 @@ public class BoardService {
             seedHolders.add(new Bank(globalIndex,0,p));
             globalIndex++;
         }
+        board.setPits(seedHolders);
     }
 
     private void initialzePlayers(){
@@ -62,7 +63,7 @@ public class BoardService {
 
         int i = 1;
         while(i <= pit.getSeeds()){
-            tmp = board.getPits().get(pitIndex + 1);
+            tmp = board.getPits().get(pitIndex + i);
             if(tmp instanceof Bank && !tmp.getPlayer().equals(player))
                 continue;
             tmp.addSeed();

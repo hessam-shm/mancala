@@ -1,4 +1,4 @@
-package com.bol.model;
+package com.bol.mancala.model;
 
 public abstract class SeedHolder {
 
@@ -11,6 +11,7 @@ public abstract class SeedHolder {
         this.seeds = seeds;
         this.player = player;
     }
+    public SeedHolder(){}
 
     public int getIndex() {
         return index;

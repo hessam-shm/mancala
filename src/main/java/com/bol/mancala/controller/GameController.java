@@ -1,6 +1,7 @@
-package com.bol.controller;
+package com.bol.mancala.controller;
 
-import com.bol.service.GameService;
+import com.bol.mancala.model.GameState;
+import com.bol.mancala.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +16,16 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping("/start")
-    public void startGame(){
-        gameService.startGame();
+    public GameState startGame(){
+        return gameService.startGame();
     }
     @GetMapping("/restart")
-    public void restartGame(){
-        gameService.startGame();
+    public GameState restartGame(){
+        return gameService.startGame();
     }
 
     @GetMapping("/move")
-    public void move(@RequestParam String pitIndex){
-        gameService.move(Integer.parseInt(pitIndex));
+    public GameState move(@RequestParam String pitId){
+        return gameService.move(Integer.parseInt(pitId));
     }
 }
