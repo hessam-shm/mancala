@@ -2,15 +2,20 @@ package com.bol.model;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
 public class GameState {
 
     private Board board;
     private Player turn;
     private Player winner;
+    private String message;
+
+    private GameState(Board board, Player turn, Player winner, String message){
+        this.board = board;
+        this.turn = turn;
+        this.winner = winner;
+        this.message = message;
+    }
 
     public Board getBoard() {
         return board;
@@ -34,5 +39,41 @@ public class GameState {
 
     public void setWinner(Player winner) {
         this.winner = winner;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public static class Builder{
+        private Board board;
+        private Player turn;
+        private Player winner;
+        private String message;
+
+        public Builder board(Board board){
+            this.board = board;
+            return this;
+        }
+        public Builder turn(Player turn){
+            this.turn = turn;
+            return this;
+        }
+        public Builder winner(Player winner){
+            this.winner = winner;
+            return this;
+        }
+        public Builder message(String message){
+            this.message = message;
+            return this;
+        }
+
+        public GameState build(){
+            return new GameState(board,turn,winner,message);
+        }
     }
 }
