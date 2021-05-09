@@ -26,10 +26,4 @@ public class Board {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
-
-    public Pit getPitByIndex(int index){
-        return pits.stream().filter(p -> p instanceof Pit)
-                .map(p -> (Pit)p).filter(p -> p.getIndex() == index)
-                .findFirst().orElse(null);
-    }
 }

@@ -35,4 +35,8 @@ public abstract class SeedHolder {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    public void addSeed(){
+        this.setSeeds(this.getSeeds()+1);
+    }
 }

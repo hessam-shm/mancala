@@ -52,16 +52,32 @@ public class BoardService {
     private void initialzePlayers(){
         List<Player> players = new ArrayList<>();
         for(int i=1;i<=NUMBER_OF_PLAYERS;i++)
-            players.add(new Player("Player_" + i));
+            players.add(new Player("Player " + i));
         board.setPlayers(players);
     }
 
-    public void updateBoard(int pitIndex){
-        Pit pit = board.getPitByIndex(pitIndex);
-        for(int i=1;i <= pit.getSeeds(); i++){
-            board.getPitByIndex(pitIndex + i).addSeed();
+    public SeedHolder updateBoard(int pitIndex, Player player){
+        Pit pit = (Pit)board.getPits().get(pitIndex);
+        SeedHolder tmp = pit;
+
+        int i = 1;
+        while(i <= pit.getSeeds()){
+            tmp = board.getPits().get(pitIndex + 1);
+            if(tmp instanceof Bank && !tmp.getPlayer().equals(player))
+                continue;
+            tmp.addSeed();
+            i++;
         }
         pit.takeAllSeeds();
+        return tmp;
+    }
+
+    public void capture(int pitIndex, Player player){
+        int numberToCapture = board.getPits().get(pitIndex).getSeeds();
+        board.getPits().get(pitIndex).setSeeds(0);
+        board.getPits().stream().filter(p -> p instanceof Bank)
+                .map(p -> (Bank)p).filter(p -> p.getPlayer().equals(player))
+                .findFirst().get().accumulateSeeds(numberToCapture);
     }
 
     public int getNumberOfPlayers(){

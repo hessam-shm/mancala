@@ -15,6 +15,8 @@ public class GameService {
     @Autowired
     private BoardService boardService;
     @Autowired
+    private MoveService moveService;
+    @Autowired
     private GameState state;
 
     public GameState startGame(){
@@ -26,7 +28,15 @@ public class GameService {
         return state;
     }
 
-    public GameState move(int pitId, String player){
+    public GameState move(int pitIndex, Player player){
+        if(!moveService.isLegalMove(pitIndex,state)){
+            state.setMessage("The move is not allowed!");
+            return state;
+        }
+
+    }
+
+    public GameState capture(int pitIndex, Player player){
 
     }
 
