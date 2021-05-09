@@ -1,0 +1,27 @@
+package com.bol.model;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Pit extends SeedHolder{
+
+    public Pit(int index, int seeds, Player player) {
+        super(index, seeds, player);
+    }
+
+    public void takeSeed(){
+        this.setSeeds(this.getSeeds()-1);
+    }
+
+    public void takeAllSeeds(){
+        this.setSeeds(0);
+    }
+
+    public void addSeed(){
+        this.setSeeds(this.getSeeds()+1);
+    }
+
+    public boolean isEmpty(){
+        return getSeeds() == 0;
+    }
+}
