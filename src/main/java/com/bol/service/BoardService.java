@@ -83,4 +83,5 @@ public class BoardService {
     public int getNumberOfPlayers(){
         return NUMBER_OF_PLAYERS;
     }
+    public int getnumberOfPits() {return NUMBER_OF_PITS;}
 }
