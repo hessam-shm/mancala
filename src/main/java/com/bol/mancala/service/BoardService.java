@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -57,19 +58,23 @@ public class BoardService {
         board.setPlayers(players);
     }
 
+    //returns the last landing pit (or bank)
     public SeedHolder updateBoard(int pitIndex, Player player){
         Pit pit = (Pit)board.getPits().get(pitIndex);
         SeedHolder tmp = pit;
 
-        int i = 1;
-        while(i <= pit.getSeeds()){
-            tmp = board.getPits().get(pitIndex + i);
-            if(tmp instanceof Bank && !tmp.getPlayer().equals(player))
-                continue;
-            tmp.addSeed();
-            i++;
-        }
+        int j = pit.getSeeds();
         pit.takeAllSeeds();
+        int index = 1;
+        while(j > 0){
+            tmp = board.getPits().get((pitIndex + index) % board.getPits().size());
+            index++;
+            if(tmp instanceof Bank && !tmp.getPlayer().equals(player)){
+                continue;
+            }
+            tmp.addSeed();
+            j--;
+        }
         return tmp;
     }
 

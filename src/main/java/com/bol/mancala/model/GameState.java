@@ -2,6 +2,8 @@ package com.bol.mancala.model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class GameState {
 
@@ -49,6 +51,22 @@ public class GameState {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameState gameState = (GameState) o;
+        return Objects.equals(getBoard(), gameState.getBoard()) &&
+                Objects.equals(getTurn(), gameState.getTurn()) &&
+                Objects.equals(getWinner(), gameState.getWinner()) &&
+                Objects.equals(getMessage(), gameState.getMessage());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBoard(), getTurn(), getWinner(), getMessage());
     }
 
     public static class Builder{

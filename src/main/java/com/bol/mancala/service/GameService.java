@@ -69,7 +69,7 @@ public class GameService {
         }
     }
 
-    public Player defineWinner(){
+    private Player defineWinner(){
 
         Map<Player, Integer> playerPoints = new HashMap<>();
         state.getBoard().getPlayers().forEach(
