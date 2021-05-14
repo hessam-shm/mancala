@@ -1,25 +1,63 @@
-import logo from './logo.svg';
+import {Helmet} from 'react-helmet';
 import './App.css';
+import {Component} from "react";
+import Board from "./component/Board";
+import Info from "./component/Info";
+import {start} from "./component/functions/functions";
+import {moveApi} from "./component/functions/functions";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            board: null,
+            turn: null,
+            winner: '',
+            message: 'Lets get started'
+        };
+    }
+
+    render() {
+        const {board, turn, winner, message} = this.state;
+        return (
+            <div className="App">
+                <Helmet>
+                    <style>{'body { background-color: #3366ca; }'}</style>
+                </Helmet>
+                {board != null ? (
+                    <Board pits={board.pits} players={board.players} move={this.move}></Board>
+                ) : (<h2>Mancala</h2> )
+                }
+
+                <Info information={{turn,winner,message}} start={this.newGame}></Info>
+            </div>
+        );
+    }
+
+    newGame = async () => {
+        const data = await start().catch(() => console.log(data));
+        if (data) {
+            this.setState({
+                message: data.message,
+                winner: data.winner,
+                turn: data.turn,
+                board: data.board
+            })
+        }
+    };
+
+    move = async (index) => {
+        const result = await moveApi(index).catch(() => console.log(result));
+        if(result) {
+            this.setState({
+                message: result.message,
+                winner: result.winner,
+                turn: result.turn,
+                board: result.board
+            })
+        }
+    };
 }
 
 export default App;

@@ -1,0 +1,9 @@
+.info{
+    float: right;
+    width: 20%;
+    height: 100%;
+    position: relative;
+    border-left: white;
+    border-left-style: solid ;
+    border-left-width: 3px;
+}

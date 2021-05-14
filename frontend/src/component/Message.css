@@ -1,0 +1,12 @@
+.message{
+    float: bottom;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+.hidden{
+    visibility: hidden;
+}
+.show{
+    visibility: visible;
+}

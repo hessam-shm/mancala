@@ -1,0 +1,11 @@
+div.winner{
+    color: white;
+    padding-left: 10pt;
+    padding-top: 10pt;
+    padding-bottom: 5pt;
+    text-align: left;
+    width: 100%;
+}
+span.winner{
+    color: yellow;
+}

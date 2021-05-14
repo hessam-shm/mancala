@@ -1,0 +1,13 @@
+.pit{
+    background: snow;
+    color: black;
+    border: 0;
+    border-radius: 50%;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
