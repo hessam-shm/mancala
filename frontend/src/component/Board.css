@@ -1,20 +1,27 @@
 .board{
     float: left;
-    width: 80%;
+    width: 75%;
     height: 100%;
     text-align: center;
 }
 .playground{
+    display: flex;
     position: absolute;
     align-content: center;
     top: 30%;
     left: 20%;
 }
 
-.ghostHolder{
-    visibility: hidden;
-    display: inline-flex;
-    text-align: center;
-    width: 160px;
-    height: 80px;
+.endsection{
+    display: flex;
+    flex-grow: 1;
+}
+.midsection{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 6;
+}
+.midrow{
+    display: flex;
+    flex-grow: 1;
 }

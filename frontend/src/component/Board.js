@@ -19,12 +19,20 @@ class Board extends Component {
         return (
             <div className={'board'}>
                 <div className={'playground'}>
-                    <Bank pit={player2Bank}></Bank>
-                    {player2Pits.reverse().map((pit,key) => <Pit key={key} pit={pit} move={move}></Pit>)}
-                    <br/>
-                    <span className={'ghostHolder'}>test</span>
-                    {player1Pits.map((pit,key) => <Pit key={key} pit={pit} move={move}></Pit>)}
-                    <Bank pit={player1Bank}></Bank>
+                    <div className={'endsection'}>
+                        <Bank pit={player2Bank}></Bank>
+                    </div>
+                    <div className={'midsection'}>
+                        <div className={'midrow'}>
+                            {player2Pits.reverse().map((pit,key) => <Pit key={key} pit={pit} move={move}></Pit>)}
+                        </div>
+                        <div className={'midrow'}>
+                            {player1Pits.map((pit,key) => <Pit key={key} pit={pit} move={move}></Pit>)}
+                        </div>
+                    </div>
+                    <div className={'endsection'}>
+                        <Bank pit={player1Bank}></Bank>
+                    </div>
                 </div>
             </div>
         );
