@@ -52,16 +52,16 @@ public class MoveServiceTest {
 
     @Test
     public void isEligibleToCaptureTest(){
-        Assertions.assertTrue(moveService.isEligibleToCapture(0,state));
-        Assertions.assertFalse(moveService.isEligibleToCapture(1,state));
+        Assertions.assertTrue(moveService.isEligibleToCapture(0,new Player("Player 1"),state));
+        Assertions.assertFalse(moveService.isEligibleToCapture(1,new Player("Player 1"),state));
     }
     @Test
     public void isEligibleToCaptureBank(){
-        Assertions.assertFalse(moveService.isEligibleToCapture(2,state));
+        Assertions.assertFalse(moveService.isEligibleToCapture(2,new Player("Player 1"),state));
     }
     @Test
     public void isEligibleToCaptureOtherPlayerPit(){
-        Assertions.assertFalse(moveService.isEligibleToCapture(3,state));
+        Assertions.assertFalse(moveService.isEligibleToCapture(3,new Player("Player 1"),state));
     }
 
     @Test

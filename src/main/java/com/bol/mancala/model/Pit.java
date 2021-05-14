@@ -18,7 +18,7 @@ public class Pit extends SeedHolder{
         this.setSeeds(0);
     }
 
-    public boolean isEmpty(){
+    public boolean emptySeed(){
         return getSeeds() == 0;
     }
 }

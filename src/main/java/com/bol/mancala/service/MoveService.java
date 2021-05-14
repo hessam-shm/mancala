@@ -3,14 +3,15 @@ package com.bol.mancala.service;
 import com.bol.mancala.model.Bank;
 import com.bol.mancala.model.GameState;
 import com.bol.mancala.model.Pit;
+import com.bol.mancala.model.Player;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MoveService {
 
-    public boolean isEligibleToCapture(int pitIndex, GameState state){
+    public boolean isEligibleToCapture(int pitIndex, Player previousPlayer, GameState state){
         return (state.getBoard().getPits().get(pitIndex) instanceof Pit &&
-                state.getBoard().getPits().get(pitIndex).getPlayer().equals(state.getTurn())
+                state.getBoard().getPits().get(pitIndex).getPlayer().equals(previousPlayer)
                 && state.getBoard().getPits().get(pitIndex).getSeeds() == 1);
     }
 

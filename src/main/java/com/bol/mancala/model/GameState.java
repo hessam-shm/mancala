@@ -9,10 +9,10 @@ public class GameState {
 
     private Board board;
     private Player turn;
-    private Player winner;
+    private String winner;
     private String message;
 
-    private GameState(Board board, Player turn, Player winner, String message){
+    private GameState(Board board, Player turn, String winner, String message){
         this.board = board;
         this.turn = turn;
         this.winner = winner;
@@ -37,11 +37,11 @@ public class GameState {
         this.turn = turn;
     }
 
-    public Player getWinner() {
+    public String getWinner() {
         return winner;
     }
 
-    public void setWinner(Player winner) {
+    public void setWinner(String winner) {
         this.winner = winner;
     }
 
@@ -72,7 +72,7 @@ public class GameState {
     public static class Builder{
         private Board board;
         private Player turn;
-        private Player winner;
+        private String winner;
         private String message;
 
         public Builder board(Board board){
@@ -83,7 +83,7 @@ public class GameState {
             this.turn = turn;
             return this;
         }
-        public Builder winner(Player winner){
+        public Builder winner(String winner){
             this.winner = winner;
             return this;
         }

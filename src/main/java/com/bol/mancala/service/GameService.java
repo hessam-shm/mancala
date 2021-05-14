@@ -33,11 +33,13 @@ public class GameService {
 
         SeedHolder landingPit = boardService.updateBoard(pitIndex,state.getTurn());
         state.setBoard(boardService.getBoard());
+        state.setMessage("");
+        Player previousPlayer = state.getTurn();
         state.setTurn(takeTurn(state.getTurn()));
 
         if(moveService.isEligibleToFreeTurn(landingPit.getIndex(), state)){
-            state.setTurn(state.getTurn());
-            state.setMessage(state.getTurn() + " can move again");
+            state.setTurn(previousPlayer);
+            state.setMessage(landingPit.getPlayer() + " can move again");
             return state;
         }
 
@@ -46,8 +48,8 @@ public class GameService {
             state.setWinner(defineWinner());
         }
 
-        if(moveService.isEligibleToCapture(landingPit.getIndex(),state)){
-            capture(pitIndex,state.getTurn());
+        if(moveService.isEligibleToCapture(landingPit.getIndex(),previousPlayer, state)){
+            capture(landingPit.getIndex(),previousPlayer);
             state.setBoard(boardService.getBoard());
         }
 
@@ -69,7 +71,7 @@ public class GameService {
         }
     }
 
-    private Player defineWinner(){
+    private String defineWinner(){
 
         Map<Player, Integer> playerPoints = new HashMap<>();
         state.getBoard().getPlayers().forEach(
@@ -78,7 +80,13 @@ public class GameService {
                         .mapToInt(SeedHolder::getSeeds).sum())
         );
 
-        return playerPoints.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+        int maxPoints = playerPoints.entrySet().stream().max(Map.Entry.comparingByValue()).get().getValue();
+        String winners = "";
+        for(Map.Entry<Player,Integer> player:playerPoints.entrySet()){
+            if(player.getValue() == maxPoints)
+                winners.concat(player.getKey().getName() + "/n");
+        }
+        return winners;
     }
 
     public GameState getGameState(){
@@ -91,14 +99,14 @@ public class GameService {
                 if(boardService.getBoard().getPits().stream()
                         .filter(p -> p instanceof Pit).map(p -> (Pit)p)
                         .filter(p -> p.getPlayer() == player)
-                        .allMatch(Pit::isEmpty))
+                        .allMatch(Pit::emptySeed))
                     return true;
             }
             return false;
         } else {
             return boardService.getBoard().getPits().stream()
                     .filter(p -> p instanceof Pit).map(p -> (Pit)p)
-                    .allMatch(Pit::isEmpty);
+                    .allMatch(Pit::emptySeed);
         }
     }
 

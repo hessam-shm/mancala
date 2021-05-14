@@ -51,7 +51,8 @@ public class GameServiceTest {
 
     @Test
     public void noMoveIfGameEnded(){
-        state.setWinner(state.getTurn());
+        //define a random player as winner to simulate ended game
+        state.setWinner(state.getTurn().getName());
         Assertions.assertEquals(state,gameService.move(0));
     }
 
