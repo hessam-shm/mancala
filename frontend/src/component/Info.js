@@ -5,6 +5,7 @@ import NewGame from "./NewGame";
 import Winner from "./Winner";
 import Turn from "./Turn";
 import Message from "./Message";
+import Board from "./Board";
 
 class Info extends Component {
     render() {
@@ -14,7 +15,11 @@ class Info extends Component {
             <div className={'info'}>
                 <Logo></Logo>
                 <NewGame start={start}></NewGame>
-                <Winner name={winner}></Winner>
+                {winner != null ? (
+                    <Winner name={winner}></Winner>
+                ) : (<div className={'placeholder'}></div> )
+                }
+
                 <Turn player={turn}></Turn>
                 <Message content = {message}></Message>
             </div>

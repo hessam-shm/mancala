@@ -3,7 +3,7 @@ import './Winner.css'
 
 class Winner extends Component {
     render() {
-        const winner = this.props.winner != null ? `${this.props.winner}` : `Game in progress`;
+        const winner = this.props.name;
         return (
             <div className='winner'>
                 Winner(s): <span className='winner'>{winner}</span>

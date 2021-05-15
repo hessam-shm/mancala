@@ -11,18 +11,18 @@ class Board extends Component {
         const move = this.props.move;
 
         //works only if players are 2
+        const numberOfPitsForEachPlayer = (pits.length/2)-1;
         const player1Pits = pits.slice(0,(pits.length/2)-1);
         const player1Bank = pits[(pits.length/2)-1];
         const player2Pits = pits.slice(pits.length/2,pits.length-1);
         const player2Bank = pits[pits.length-1];
-        console.log(player2Pits);
         return (
             <div className={'board'}>
                 <div className={'playground'}>
                     <div className={'endsection'}>
                         <Bank pit={player2Bank}></Bank>
                     </div>
-                    <div className={'midsection'}>
+                    <div className={'midsection'} flex-grow={numberOfPitsForEachPlayer}>
                         <div className={'midrow'}>
                             {player2Pits.reverse().map((pit,key) => <Pit key={key} pit={pit} move={move}></Pit>)}
                         </div>

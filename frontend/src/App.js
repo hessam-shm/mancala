@@ -27,7 +27,7 @@ class App extends Component {
                 </Helmet>
                 {board != null ? (
                     <Board pits={board.pits} players={board.players} move={this.move}></Board>
-                ) : (<h2>Mancala</h2> )
+                ) : (<div className={'splashscreen'}><h1 className={'gamename'}>Mancala</h1></div> )
                 }
 
                 <Info information={{turn,winner,message}} start={this.newGame}></Info>

@@ -9,7 +9,7 @@
     position: absolute;
     align-content: center;
     top: 30%;
-    left: 20%;
+    left: 15%;
 }
 
 .endsection{
@@ -19,7 +19,7 @@
 .midsection{
     display: flex;
     flex-direction: column;
-    flex-grow: 6;
+    /*flex-grow: 6;*/
 }
 .midrow{
     display: flex;
