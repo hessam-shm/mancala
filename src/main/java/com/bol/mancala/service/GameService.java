@@ -31,6 +31,12 @@ public class GameService {
             return state;
         }
 
+        if(isGameEnded()){
+            state.setMessage("Game over");
+            state.setWinner(defineWinner());
+            return state;
+        }
+
         SeedHolder landingPit = boardService.updateBoard(pitIndex,state.getTurn());
         state.setBoard(boardService.getBoard());
         state.setMessage("");
@@ -41,11 +47,6 @@ public class GameService {
             state.setTurn(previousPlayer);
             state.setMessage(landingPit.getPlayer() + " can move again");
             return state;
-        }
-
-        if(isGameEnded()){
-            state.setMessage("Game over");
-            state.setWinner(defineWinner());
         }
 
         if(moveService.isEligibleToCapture(landingPit.getIndex(),previousPlayer, state)){
@@ -83,10 +84,11 @@ public class GameService {
         int maxPoints = playerPoints.entrySet().stream().max(Map.Entry.comparingByValue()).get().getValue();
         String winners = "";
         for(Map.Entry<Player,Integer> player:playerPoints.entrySet()){
-            if(player.getValue() == maxPoints)
-                winners.concat(player.getKey().getName() + "/n");
+            if(player.getValue().equals(maxPoints)){
+                winners += player.getKey().getName() + " ";
+            }
         }
-        return winners;
+        return winners.trim();
     }
 
     public GameState getGameState(){
