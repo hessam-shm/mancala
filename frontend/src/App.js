@@ -23,7 +23,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Helmet>
-                    <style>{'body { background-color: #3366ca; }'}</style>
+                    <style>{'body { background-color: #0000a4; }'}</style>
                 </Helmet>
                 {board != null ? (
                     <Board pits={board.pits} players={board.players} move={this.move}></Board>
