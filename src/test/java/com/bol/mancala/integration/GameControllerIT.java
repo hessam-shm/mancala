@@ -27,14 +27,6 @@ public class GameControllerIT {
     }
 
     @Test
-    public void restartTest() throws Exception {
-        mockMvc.perform(get("/mancala/restart"))
-                .andExpect(jsonPath("$.message").value("Game starts"))
-                .andExpect(jsonPath("$.turn.name").value("Player 1"))
-                .andReturn();
-    }
-
-    @Test
     public void moveTest() throws Exception {
         mockMvc.perform(get("/mancala/start")).andReturn();
         mockMvc.perform(get("/mancala/move").param("pitId","0"))
@@ -46,9 +38,9 @@ public class GameControllerIT {
 
     }
     @Test
-    public void outOfTurnMoveTest() throws Exception {
+    public void badIndexTest() throws Exception {
         mockMvc.perform(get("/mancala/start")).andReturn();
-        mockMvc.perform(get("/mancala/move").param("pitId","0"))
+        mockMvc.perform(get("/mancala/move").param("pitId","abc"))
                 .andExpect(jsonPath("$.board.pits[0].seeds").value(4))
                 .andExpect(jsonPath("$.board.pits[2].seeds").value(0))
                 .andExpect(jsonPath("$.board.pits[4].seeds").value(4))
@@ -57,13 +49,13 @@ public class GameControllerIT {
 
     }
     @Test
-    public void outOfTurnMoveTest1() throws Exception {
+    public void outOfTurnMoveTest() throws Exception {
         mockMvc.perform(get("/mancala/start")).andReturn();
-        mockMvc.perform(get("/mancala/move").param("pitId","0"))
-                .andExpect(jsonPath("$.board.pits[0].seeds").value(0))
-                .andExpect(jsonPath("$.board.pits[2].seeds").value(1))
+        mockMvc.perform(get("/mancala/move").param("pitId","3"))
+                .andExpect(jsonPath("$.board.pits[0].seeds").value(4))
+                .andExpect(jsonPath("$.board.pits[2].seeds").value(0))
                 .andExpect(jsonPath("$.board.pits[4].seeds").value(4))
-                .andExpect(jsonPath("$.turn.name").value("Player 2"))
+                .andExpect(jsonPath("$.turn.name").value("Player 1"))
                 .andReturn();
 
     }

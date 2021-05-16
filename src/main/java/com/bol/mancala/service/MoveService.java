@@ -17,6 +17,10 @@ public class MoveService {
 
     //Bank is not clickable
     public boolean isLegalMove(int pitIndex, GameState state){
+        if(pitIndex >= state.getBoard().getPits().size() || pitIndex < 0){
+            state.setMessage("Not a valid pit index");
+            return false;
+        }
         if(!state.getBoard().getPits().get(pitIndex).getPlayer().equals(state.getTurn())){
             state.setMessage("This pit does not belong to " + state.getTurn());
             return false;

@@ -70,6 +70,10 @@ public class MoveServiceTest {
         Assertions.assertFalse(moveService.isLegalMove(4,state));
     }
     @Test
+    public void isLegalMoveOutOfRangeIndex(){
+        Assertions.assertFalse(moveService.isLegalMove(1000,state));
+    }
+    @Test
     public void isLegalMoveEmptyPit(){
         Assertions.assertFalse(moveService.isLegalMove(1,state));
     }
