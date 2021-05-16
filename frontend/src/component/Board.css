@@ -19,9 +19,16 @@
 .midsection{
     display: flex;
     flex-direction: column;
-    /*flex-grow: 6;*/
 }
 .midrow{
     display: flex;
     flex-grow: 1;
+}
+
+.error{
+    margin-top: 30%;
+    text-align: center;
+}
+.error-message{
+    color: whitesmoke;
 }
