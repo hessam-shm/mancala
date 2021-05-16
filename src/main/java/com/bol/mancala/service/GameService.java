@@ -97,12 +97,10 @@ public class GameService {
     }
 
     private boolean isGameEnded() {
-        if (boardService.getBoard().getPits().stream()
+        return boardService.getBoard().getPits().stream()
                 .filter(p -> p instanceof Pit).map(p -> (Pit) p)
                 .filter(p -> p.getPlayer().equals(state.getTurn()))
-                .allMatch(Pit::emptySeed))
-            return true;
-        return false;
+                .allMatch(Pit::emptySeed);
     }
 
     private Player takeTurn(Player player) {

@@ -3,9 +3,9 @@
 To run the game simply run the following command from the root of the application
 `./mvnw spring-boot:run` then in your browser open `http://localhost:8080`  
 In order to change the number of players, pits, and seeds you can change the corresponding values in `application.properties` file.  
-Please be aware that while the game theoretically supports any number of players, pits, or seeds (as long as the cumulative number of seeds in a pit or bank does not overflow Java integer max value), but UI only supports up to two players, and a reasonably small number of pits.  
+Please be aware that while the game theoretically supports any number of players, pits, or seeds (as long as the cumulative number of seeds in a pit or bank does not overflow Java integer max value), but UI only supports up to two players and a reasonably small number of pits.  
 ##How to play
-For a brief instruction about rules and how to play please refer to this link:  
+For a brief description of rules and how to play please refer to [Instruction](./Instruction.md) page.  
 If you want to try the game without the convenience of UI(!), you can use the following rest APIs:  
 * start a new game with: `http://localhost:8080/mancala/start`
 * move with `http://localhost:8080/mancala/move?pitId={id}`
@@ -38,9 +38,9 @@ This is a sample response you get from the above requests:
   }
 
 ##To do
-List of features that would be desirable to be added in future:
-* A complete set of tests for more than two players game.
-* Add support for more than two players game, so the board can form triangle, rectangle, pentagon... based on the number of players.
+List of features that would be desirable to be added in the future:
+* A complete set of tests for more than two-player game.
+* Add UI support for more than two players, so the board can form triangle, rectangle, pentagon... based on the number of players.
 * Support for non-local multiplayer with websocket
 * Some kind of random simulation for testing the game
 * User enters the number of players, pits, and seeds in UI before starting the game.

@@ -1,17 +1,19 @@
 package com.bol.mancala.model;
 
+import java.util.Objects;
+
 public abstract class SeedHolder {
 
     private int index;
     private int seeds;
     private Player player;
 
-    public SeedHolder(int index, int seeds, Player player) {
+    protected SeedHolder(int index, int seeds, Player player) {
         this.index = index;
         this.seeds = seeds;
         this.player = player;
     }
-    public SeedHolder(){}
+    protected SeedHolder(){}
 
     public int getIndex() {
         return index;
@@ -39,5 +41,18 @@ public abstract class SeedHolder {
 
     public void addSeed(){
         this.setSeeds(this.getSeeds()+1);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SeedHolder that = (SeedHolder) o;
+        return getIndex() == that.getIndex() && Objects.equals(getPlayer(), that.getPlayer());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIndex(), getPlayer());
     }
 }

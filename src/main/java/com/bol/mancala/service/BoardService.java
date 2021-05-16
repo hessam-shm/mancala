@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -78,6 +77,7 @@ public class BoardService {
         return tmp;
     }
 
+    //not using isPresent() is safe, every player has exactly one bank
     public void capture(int pitIndex, Player player){
         int numberToCapture = board.getPits().get(pitIndex).getSeeds();
         board.getPits().get(pitIndex).setSeeds(0);
