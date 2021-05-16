@@ -1,11 +1,11 @@
-#Instruction manual
+## Instruction manual
 
-##How to play
+### How to play
 When you start the game you see the following screen
 * New Game button starts a new game
 * Throughout the game keep an eye on the message section
 
-###Overview of rules
+### Overview of rules
 * Each player has a number of pits and a bank to his/her right.
 * Players can move stones from their own pits, excluding banks.
 * If a move ends up in Bank, player gets a free turn.
